@@ -175,7 +175,7 @@ public class Zayavku {
 						table.removeAll();
 						db_connect();
 						select_all(combo.getSelectionIndex());
-					}
+					}										
 				});
 				btnLoad.setText("Load");
 				shell.setTabList(new Control[]{table, btnLoad});
@@ -189,7 +189,7 @@ public class Zayavku {
 		props.setProperty("password","palamarc");
 		conn = DriverManager.getConnection(url, props);
 		} catch (SQLException e) {
-			System.out.println("!!!Exception in connect to database!!!");
+			System.out.println("!!!Connection error!!!");
 			e.printStackTrace();
 		}
 	}
