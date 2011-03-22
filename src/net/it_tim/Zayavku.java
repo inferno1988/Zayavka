@@ -237,12 +237,23 @@ public class Zayavku {
 			String url = "jdbc:postgresql://" + prefs.getOption("host", "localhost") + ":" +prefs.getOption("port", "5432") + "/zayavka";
 			Properties props = new Properties();
 			props.setProperty("user", prefs.getOption("login", "postgres"));
-			props.setProperty("password", prefs.getOption("password", "123456"));
+			props.setProperty("password", prefs.getOption("password", ""));
 			conn = DriverManager.getConnection(url, props);
 		} catch (SQLException e) {
 			System.out.println("!!!Connection error!!!");
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public static void db_disconnect() {
+		try {
+		if (conn != null){
+			conn.close();
+		}}
+        catch(SQLException se)  {
+        	se.printStackTrace();
+        }
+		table.removeAll();
 	}
 
 	private static void select_all(int status) {
@@ -298,7 +309,6 @@ public class Zayavku {
 				} else {
 					tableItem.setImage(6, falseImage);
 				}
-
 				tableItem.setText(7, rs.getString(8));
 				tableItem.setText(8, rs.getString(9));
 				tableItem.setText(9, rs.getString(10));

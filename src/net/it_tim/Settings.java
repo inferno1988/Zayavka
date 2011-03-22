@@ -18,7 +18,6 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Control;
 
-
 public class Settings extends Dialog {
 
 	protected Object result;
@@ -91,8 +90,11 @@ public class Settings extends Dialog {
 				prefs.setOption("login", text_2.getText());
 				prefs.setOption("password", text_3.getText());
 				if (prefs.saveConfig()) {
-					Zayavku.db_connect();
-					shell.dispose();
+					MessageBox messageBox = new MessageBox(shell, SWT.ICON_ERROR | SWT.OK);
+			        messageBox.setText("Перезагрузка");
+			        messageBox.setMessage("Потрібно перезапустити програму!");
+			        messageBox.open();
+					System.exit(0);
 				} else {
 					MessageBox messageBox = new MessageBox(shell, SWT.ICON_WARNING | SWT.OK);
 			        messageBox.setText("IO Error");
